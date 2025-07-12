@@ -68,3 +68,10 @@ A mini full-featured web application that enables users to exchange skills with 
 
 ## 📝 License
    This project is licensed under the MIT License.
+
+
+## Team Members
+1. Shivam Yadav [shivamyraj24@gmail.com]
+2. Mukesh Burdak [mburdak626@gmail.com]
+3. Kuldeep Gaur [kuldeep418@gmail.com]
+4. Sparsh Kumar [sparshkumar10g@gmail.com]
