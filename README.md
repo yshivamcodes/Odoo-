@@ -75,3 +75,5 @@ A mini full-featured web application that enables users to exchange skills with 
 2. Mukesh Burdak [mburdak626@gmail.com]
 3. Kuldeep Gaur [kuldeep418@gmail.com]
 4. Sparsh Kumar [sparshkumar10g@gmail.com]
+
+## Video explanation link : https://1drv.ms/f/c/9bd9249cb2718622/EtaJHYENfbFAhM8dUYzGE2kBgETjE7xBb4S0uItZPP1wRg?e=QMQrjH
