@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSwap - Exchange Your Skills</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="notification-container" id="notificationContainer"></div>
+    
+    <header class="header">
+        <div class="logo-container">
+            <h1 class="logo" id="logo">SkillSwap</h1>
+            <div class="logo-animation"></div>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#" class="nav-link" id="homeLink">Home</a></li>
+                <li><a href="#" class="nav-link" id="browseLink">Browse Skills</a></li>
+                <li><a href="#" class="nav-link" id="profileLink">My Profile</a></li>
+                <li><a href="#" class="nav-link" id="swapsLink">My Swaps</a></li>
+                <li><a href="#" class="nav-link" id="adminLink" style="display: none;">Admin</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button id="loginBtn" class="btn">Login</button>
+            <button id="registerBtn" class="btn btn-primary">Register</button>
+            <button id="logoutBtn" class="btn btn-danger" style="display: none;">Logout</button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="homeSection" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h2 class="hero-title">Exchange Skills, Grow Together</h2>
+                    <p class="hero-subtitle">Teach what you know, learn what you don't - no money needed!</p>
+                    <button id="getStartedBtn" class="btn btn-primary btn-large">Get Started</button>
+                </div>
+                <div class="hero-image">
+                    <div class="skill-icons">
+                        <i class="fas fa-paint-brush icon-animation"></i>
+                        <i class="fas fa-code icon-animation delay-1"></i>
+                        <i class="fas fa-music icon-animation delay-2"></i>
+                        <i class="fas fa-language icon-animation delay-3"></i>
+                        <i class="fas fa-calculator icon-animation delay-4"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-exchange-alt feature-icon"></i>
+                    <h3>Skill Exchange</h3>
+                    <p>Offer your skills and request others in return without any monetary transaction.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users feature-icon"></i>
+                    <h3>Community</h3>
+                    <p>Connect with like-minded individuals who are eager to share and learn.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-star feature-icon"></i>
+                    <h3>Rating System</h3>
+                    <p>Rate your swap experiences to help build a trustworthy community.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Browse Skills Section -->
+        <section id="browseSection" class="section">
+            <h2 class="section-title">Browse Skills</h2>
+            <div class="search-container">
+                <input type="text" id="skillSearch" placeholder="Search for a skill (e.g., Photoshop, Excel)">
+                <button id="searchBtn" class="btn btn-primary"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="filter-container">
+                <select id="locationFilter">
+                    <option value="">All Locations</option>
+                    <option value="New York">New York</option>
+                    <option value="London">London</option>
+                    <option value="Tokyo">Tokyo</option>
+                    <option value="Sydney">Sydney</option>
+                </select>
+                <select id="availabilityFilter">
+                    <option value="">Any Availability</option>
+                    <option value="weekdays">Weekdays</option>
+                    <option value="weekends">Weekends</option>
+                    <option value="evenings">Evenings</option>
+                </select>
+            </div>
+            <div class="user-cards" id="userCards">
+                <!-- User cards will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profileSection" class="section">
+            <h2 class="section-title">My Profile</h2>
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-pic-container">
+                        <img src="https://via.placeholder.com/150" alt="Profile Picture" id="profilePic">
+                        <button id="changePicBtn" class="btn btn-small">Change</button>
+                    </div>
+                    <div class="profile-info">
+                        <input type="text" id="profileName" placeholder="Your Name" class="profile-input">
+                        <input type="text" id="profileLocation" placeholder="Your Location (optional)" class="profile-input">
+                        <div class="profile-privacy">
+                            <label>
+                                <input type="checkbox" id="profilePublic"> Make my profile public
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-skills">
+                    <div class="skills-column">
+                        <h3>Skills I Offer</h3>
+                        <div class="skills-list" id="offeredSkills">
+                            <!-- Offered skills will be added here -->
+                        </div>
+                        <div class="add-skill">
+                            <input type="text" id="newOfferedSkill" placeholder="Add a skill you offer">
+                            <button id="addOfferedSkill" class="btn btn-small"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="skills-column">
+                        <h3>Skills I Want</h3>
+                        <div class="skills-list" id="wantedSkills">
+                            <!-- Wanted skills will be added here -->
+                        </div>
+                        <div class="add-skill">
+                            <input type="text" id="newWantedSkill" placeholder="Add a skill you want">
+                            <button id="addWantedSkill" class="btn btn-small"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-availability">
+                    <h3>My Availability</h3>
+                    <div class="availability-options">
+                        <label><input type="checkbox" name="availability" value="weekdays"> Weekdays</label>
+                        <label><input type="checkbox" name="availability" value="weekends"> Weekends</label>
+                        <label><input type="checkbox" name="availability" value="mornings"> Mornings</label>
+                        <label><input type="checkbox" name="availability" value="afternoons"> Afternoons</label>
+                        <label><input type="checkbox" name="availability" value="evenings"> Evenings</label>
+                    </div>
+                </div>
+
+                <button id="saveProfileBtn" class="btn btn-primary">Save Profile</button>
+            </div>
+        </section>
+
+        <!-- Swaps Section -->
+        <section id="swapsSection" class="section">
+            <h2 class="section-title">My Swaps</h2>
+            <div class="swap-tabs">
+                <button class="swap-tab active" data-tab="pending">Pending</button>
+                <button class="swap-tab" data-tab="accepted">Accepted</button>
+                <button class="swap-tab" data-tab="completed">Completed</button>
+            </div>
+            
+            <div class="swap-content">
+                <div id="pendingSwaps" class="swap-list active">
+                    <!-- Pending swaps will be added here -->
+                </div>
+                <div id="acceptedSwaps" class="swap-list">
+                    <!-- Accepted swaps will be added here -->
+                </div>
+                <div id="completedSwaps" class="swap-list">
+                    <!-- Completed swaps will be added here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Section -->
+        <section id="adminSection" class="section">
+            <h2 class="section-title">Admin Dashboard</h2>
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="users">User Management</button>
+                <button class="admin-tab" data-tab="skills">Skill Moderation</button>
+                <button class="admin-tab" data-tab="swaps">Swap Monitoring</button>
+                <button class="admin-tab" data-tab="announcements">Announcements</button>
+                <button class="admin-tab" data-tab="reports">Reports</button>
+            </div>
+            
+            <div class="admin-content">
+                <div id="usersTab" class="admin-panel active">
+                    <h3>User Management</h3>
+                    <div class="search-container">
+                        <input type="text" id="userSearch" placeholder="Search users...">
+                        <button id="userSearchBtn" class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="user-list" id="adminUserList">
+                        <!-- Users will be listed here -->
+                    </div>
+                </div>
+                
+                <div id="skillsTab" class="admin-panel">
+                    <h3>Skill Moderation</h3>
+                    <div class="pending-skills" id="pendingSkillsList">
+                        <!-- Skills needing approval will be listed here -->
+                    </div>
+                </div>
+                
+                <div id="swapsTab" class="admin-panel">
+                    <h3>Swap Monitoring</h3>
+                    <div class="swap-stats">
+                        <div class="stat-card">
+                            <h4>Pending Swaps</h4>
+                            <p id="pendingSwapCount">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Accepted Swaps</h4>
+                            <p id="acceptedSwapCount">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Completed Swaps</h4>
+                            <p id="completedSwapCount">0</p>
+                        </div>
+                    </div>
+                    <div class="swap-list" id="adminSwapList">
+                        <!-- All swaps will be listed here -->
+                    </div>
+                </div>
+                
+                <div id="announcementsTab" class="admin-panel">
+                    <h3>Send Announcement</h3>
+                    <textarea id="announcementText" placeholder="Write your platform-wide message here..."></textarea>
+                    <button id="sendAnnouncementBtn" class="btn btn-primary">Send Announcement</button>
+                </div>
+                
+                <div id="reportsTab" class="admin-panel">
+                    <h3>Generate Reports</h3>
+                    <div class="report-options">
+                        <button id="userActivityReport" class="btn">User Activity Report</button>
+                        <button id="feedbackReport" class="btn">Feedback Report</button>
+                        <button id="swapStatsReport" class="btn">Swap Statistics Report</button>
+                    </div>
+                    <div class="report-preview" id="reportPreview">
+                        <!-- Report preview will be shown here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Auth Modals -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Register</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Name</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Detail Modal -->
+    <div class="modal" id="userDetailModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="user-detail-header">
+                <img src="https://via.placeholder.com/150" alt="User Photo" id="detailUserPhoto">
+                <div>
+                    <h2 id="detailUserName">User Name</h2>
+                    <p id="detailUserLocation">Location</p>
+                </div>
+            </div>
+            
+            <div class="user-detail-skills">
+                <div>
+                    <h3>Offers</h3>
+                    <ul id="detailOfferedSkills">
+                        <!-- Offered skills will be listed here -->
+                    </ul>
+                </div>
+                <div>
+                    <h3>Wants</h3>
+                    <ul id="detailWantedSkills">
+                        <!-- Wanted skills will be listed here -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="user-detail-availability">
+                <h3>Availability</h3>
+                <p id="detailAvailability">Not specified</p>
+            </div>
+            
+            <div class="user-detail-actions">
+                <button id="requestSwapBtn" class="btn btn-primary">Request Skill Swap</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Swap Request Modal -->
+    <div class="modal" id="swapRequestModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Request Skill Swap</h2>
+            <form id="swapRequestForm">
+                <div class="form-group">
+                    <label>You are requesting to swap with <span id="swapUserName">User Name</span></label>
+                </div>
+                <div class="form-group">
+                    <label for="swapRequestMessage">Message (optional)</label>
+                    <textarea id="swapRequestMessage" placeholder="Tell them what you'd like to exchange..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Select skills you want to request:</label>
+                    <div id="swapRequestSkills">
+                        <!-- Skills will be listed here as checkboxes -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Select skills you can offer in return:</label>
+                    <div id="swapOfferSkills">
+                        <!-- User's skills will be listed here as checkboxes -->
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div class="modal" id="feedbackModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Rate Your Swap Experience</h2>
+            <form id="feedbackForm">
+                <input type="hidden" id="feedbackSwapId">
+                <div class="form-group">
+                    <label>Rate <span id="feedbackUserName">User Name</span></label>
+                    <div class="rating-stars">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <input type="hidden" id="feedbackRating" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="feedbackComments">Comments (optional)</label>
+                    <textarea id="feedbackComments" placeholder="How was your experience?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2023 SkillSwap. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
