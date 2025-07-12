@@ -42,9 +42,9 @@ A mini full-featured web application that enables users to exchange skills with 
 
 ## 📦 Folder Structure
 
-├── index.html # Main HTML file
-├── styles.css # All styling
-├── script.js # Complete JavaScript logic
+ index.html # Main HTML file
+ styles.css # All styling
+ script.js # Complete JavaScript logic
 
 
 ## 🧪 How to Run
